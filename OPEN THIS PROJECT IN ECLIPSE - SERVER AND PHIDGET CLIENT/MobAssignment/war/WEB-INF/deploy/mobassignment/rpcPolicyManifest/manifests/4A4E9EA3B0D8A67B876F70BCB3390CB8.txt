@@ -1,0 +1,2 @@
+serviceClass: com.mobappdev.huseyinarpalikli.client.GreetingService
+path: 30DAA169EB93F68ADDA3DACD431FD28B.gwt.rpc

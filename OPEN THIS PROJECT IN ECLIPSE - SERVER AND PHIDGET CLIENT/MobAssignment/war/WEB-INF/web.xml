@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee">
+
+  <!-- Servlets -->
+    <servlet>
+    <servlet-name>RetrieveLocation</servlet-name>
+    <servlet-class>com.mobappdev.huseyinarpalikli.server.RetrieveLocation</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>RetrieveLocation</servlet-name>
+    <url-pattern>/retrieve-location</url-pattern>
+  </servlet-mapping>
+   
+   
+      <servlet>
+    <servlet-name>UploadLocation</servlet-name>
+    <servlet-class>com.mobappdev.huseyinarpalikli.server.UploadLocation</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>UploadLocation</servlet-name>
+    <url-pattern>/upload-location</url-pattern>
+  </servlet-mapping>
+  
+        <servlet>
+    <servlet-name>RetrieveSensor</servlet-name>
+    <servlet-class>com.mobappdev.huseyinarpalikli.server.RetrieveSensor</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>RetrieveSensor</servlet-name>
+    <url-pattern>/retrieve-sensor</url-pattern>
+  </servlet-mapping>
+  
+          <servlet>
+    <servlet-name>sensorToDB</servlet-name>
+    <servlet-class>com.mobappdev.huseyinarpalikli.server.sensorToDB</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>sensorToDB</servlet-name>
+    <url-pattern>/sensor-to-db</url-pattern>
+  </servlet-mapping>
+  
+            <servlet>
+    <servlet-name>TriggerSensor</servlet-name>
+    <servlet-class>com.mobappdev.huseyinarpalikli.server.TriggerSensor</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>TriggerSensor</servlet-name>
+    <url-pattern>/trigger-sensor</url-pattern>
+  </servlet-mapping>
+  
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>track-location.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>

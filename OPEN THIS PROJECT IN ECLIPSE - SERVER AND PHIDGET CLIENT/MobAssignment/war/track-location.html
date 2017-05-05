@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>TrackMe</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyC3hSBAezyuddIEy_V3OoKy6iuLca3mPWk" type="text/javascript"></script>
+    <script type="text/javascript">
+var xmlHttp;
+//var url = "http://localhost:8080/Assignment1/UploadLocation?info=true";
+var url = "http://1-dot-mobile-assignmen-1482166041830.appspot.com/upload-location?info=true";
+
+var map;
+var marker;
+
+var lastpoint;
+var direction;
+
+function load(){
+  if (GBrowserIsCompatible()) {
+    map = new GMap2(document.getElementById("map"));
+    map.setCenter(new GLatLng(0,0), 15);
+    map.addOverlay(new GStreetviewOverlay());
+    setInterval('updatelocation()',1000);
+  }
+}
+
+function updatelocation (){
+  xmlHttp=null;
+  xmlHttp=GetXmlHttpObject();
+  if (xmlHttp==null){
+    alert ("Browser does not support HTTP Request");
+    return;
+  }
+  xmlHttp.onreadystatechange=stateChanged;
+  xmlHttp.open("GET",url,true);
+  xmlHttp.send(null);
+}
+
+function stateChanged() {
+  if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){
+    if (marker != null) map.removeOverlay(marker);
+    var json = eval('(' + xmlHttp.responseText + ')');
+    var point = new GLatLng(Number(json.info.lat),Number(json.info.lon));
+    marker = new GMarker(point);
+    marker.bindInfoWindowHtml(json.info.email+" "+Number(json.info.lat)+ " "+ Number(json.info.lon));
+    map.addOverlay(marker);
+    map.panTo(point);
+
+  }
+}
+
+function GetXmlHttpObject(){
+  var objXMLHttp = null;
+  if (window.XMLHttpRequest){
+    objXMLHttp = new XMLHttpRequest();
+  }
+  else if (window.ActiveXObject){
+    objXMLHttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  return objXMLHttp;
+}
+    </script>
+  </head>
+  <body onload="load()" onunload="GUnload()">
+    <center>
+      <table>
+        <tr>
+           <td>
+             <div id="map" style="width: 600px; height: 600px;">
+             </div>
+           </td>
+        </tr>
+      </table>
+    </center>
+  </body>
+</html>

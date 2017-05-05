@@ -1,0 +1,3 @@
+# Module mobassignment
+# RPC service class, partial path of RPC policy file
+com.mobappdev.huseyinarpalikli.client.GreetingService, 30DAA169EB93F68ADDA3DACD431FD28B.gwt.rpc

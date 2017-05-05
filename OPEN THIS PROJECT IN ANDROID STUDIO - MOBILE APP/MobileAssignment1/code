@@ -1,0 +1,37 @@
+
+     ListView locationList = (ListView) findViewById(R.id.locationList);
+
+locationList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView adapterView, View view, final int position, long id) {
+                final Handler mHandler = new Handler();
+                final GoogleMap googleMap;
+                // String selectedLocationTrack=(String) adapterView.getItemAtPosition(position);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        while (true) {
+                            try {
+                                Thread.sleep(2000);
+                                mHandler.post(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        googleMap.addMarker(new MarkerOptions()
+                                                .position(new LatLng(lat, lng))
+                                                .title("Current Location")
+                                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+
+
+                                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(locationHistoryLatLng.get(position), 12));
+                                    }
+                                });
+                            } catch (Exception e) {
+                                // TODO: handle exception
+                            }
+                        }
+                    }
+                }).start();
+
+            }
+        });
